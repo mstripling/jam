@@ -1,14 +1,14 @@
 package io
 import (
-    "github.com/mstripling/internal/async"
+    "github.com/mstripling/jam/internal/async"
     "bufio"
     "encoding/json"
     "fmt"
-    "github.com/mstripling/cmd/jam/main"
+    "github.com/mstripling/jam/cmd/jam/main"
     "os"
     "os/exec"
 //    "os/signal"
-    "github.com/mstripling/internal/setup"
+    "github.com/mstripling/jam/internal/setup"
     "sync"
     "strings"
 //    "syscall"
