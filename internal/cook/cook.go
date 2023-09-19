@@ -1,17 +1,8 @@
-package internal
+package cook
+
 import (
-    "github.com/mstripling/jam/internal/async"
-    "bufio"
-    "encoding/json"
     "fmt"
     "os"
-    "os/exec"
-//    "os/signal"
-    "github.com/mstripling/jam/internal/setup"
-    "sync"
-    "strings"
-//    "syscall"
-    "time"
 )
 
 func WriteToFile(output []byte, filename string) error{
@@ -46,7 +37,7 @@ func WriteToFile(output []byte, filename string) error{
 }
 
 //************************************************************************************\\
-type NetworkEntry struct{
+/*type NetworkEntry struct{
     BSSID string 'json:"BSSID"'
     Channel string 'json:"Channel "'
 }
@@ -55,10 +46,10 @@ type DeviceEntry struct{
     MAC string 'json:"MAC"'
     Signal string 'json:"Signal"'
 }
-
 //Global maps
 var networks = make(map[string]NetworkEntry)
 var devices = make(map[string]DeviceEntry)
+*/
 
 
 

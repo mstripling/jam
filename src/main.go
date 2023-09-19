@@ -2,16 +2,11 @@ package main
 
 import (
     "github.com/mstripling/jam/internal/async"
-    "bufio"
-    "encoding/json"
     "fmt"
-    "github.com/mstripling/jam/internal/io"
-    "os"
-    "os/exec"
+//    "github.com/mstripling/jam/internal/cook"
 //    "os/signal"
     "github.com/mstripling/jam/internal/setup"
     "sync"
-    "strings"
 //    "syscall"
     "time"
 )
@@ -32,8 +27,8 @@ func main(){
     var wg sync.WaitGroup
 
     wg.Add(1)
-    //async.RunSimpleDelay(washScan, 10)   
-    go async.Run(washScan, 0, &wg, outputChan,stopChan)
+    //async.AsyncSimpleDelay(washScan, 10)   
+    go async.Async(washScan, 0, &wg, outputChan,stopChan)
     timer := time.NewTimer(30 * time.Second)
     defer timer.Stop()
 
@@ -83,6 +78,6 @@ func main(){
 //
 //for _, cmd := range commands {
 //    wg.Add(1)
-//    go async.Run(cmd, &wg)
+//    go async.Sync(cmd, &wg)
 //}
 //wg.Wait()

@@ -1,16 +1,10 @@
-package internal
+package async
+
 import (
-    "github.com/mstripling/jam/internal/setup"
     "bufio"
-    "encoding/json"
     "fmt"
-    "os"
     "os/exec"
-//    "os/signal"
-    "github.com/mstripling/jam/internal/io"
     "sync"
-    "strings"
-//    "syscall"
     "time"
 )
 
@@ -66,7 +60,7 @@ func Async(command string, delay int, wg *sync.WaitGroup, outputChan chan<- stri
 func Sync(command string) []byte {
     cmd := exec.Command("bash", "-c", command)
     output, err := cmd.Output()
-    async.Check(async.ErrMessage{command,err,"Output()"})
+    Check(ErrMessage{command,err,"Output()"})
     return output
 }
 
@@ -74,7 +68,7 @@ func Sync(command string) []byte {
 func RunSimpleDelay(command string, delay int) []byte {
     cmd := exec.Command("bash", "-c", command)
     output, err := cmd.Output()
-    async.Check(async.ErrMessage{command,err,"Output()"})
+    Check(ErrMessage{command,err,"Output()"})
     time.Sleep(time.Duration(delay)*time.Second)
     return output
 }
