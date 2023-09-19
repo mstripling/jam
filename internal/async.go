@@ -1,10 +1,9 @@
-package async
+package internal
 import (
     "github.com/mstripling/jam/internal/setup"
     "bufio"
     "encoding/json"
     "fmt"
-    "github.com/mstripling/jam/cmd/jam/main"
     "os"
     "os/exec"
 //    "os/signal"
