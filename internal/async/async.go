@@ -64,11 +64,25 @@ func Sync(command string) []byte {
     return output
 }
 
-
-func RunSimpleDelay(command string, delay int) []byte {
+func SimpleDelay(command string, delay int) {
     cmd := exec.Command("bash", "-c", command)
-    output, err := cmd.Output()
-    Check(ErrMessage{command,err,"Output()"})
-    time.Sleep(time.Duration(delay)*time.Second)
-    return output
+
+    // Start the command but do not wait for it to complete
+    err := cmd.Start()
+    Check(ErrMessage{command, err, "Start()"})
+    
+ 
+    timer := time.NewTimer(time.Duration(delay) * time.Second)
+	defer timer.Stop()
+
+	select {
+	case <-timer.C:
+		// If the delay is reached, kill the command
+		err := cmd.Process.Kill()
+		if err != nil {
+			fmt.Printf("Error killing command: %v\n", err)
+		}
+		return
+	}
 }
+
