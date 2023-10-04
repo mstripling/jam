@@ -9,6 +9,7 @@ import (
 
 func Kill(s []cook.DeviceEntry, power int, wifiCardName string, stopChan <-chan struct{}, wg *sync.WaitGroup) {
     defer wg.Done()
+
     for _, device := range s{
         go func(device cook.DeviceEntry) {
             select{

@@ -45,6 +45,7 @@ func main(){
     }()
     */
     async.SimpleDelay(dumpScan, 30)
+    //hard coded file path
     cleanedCSV := "/home/miles/go/jam/cleaned.csv"
     // keep as is
     keyword := "Station MAC"
@@ -61,8 +62,9 @@ func main(){
         fmt.Printf("MAC: %s, BSSID: %s\n", device.MAC, device.BSSID)
     }
 
+    fmt.Printf("Devices stored before strip: %s\n", len(devices))
     devices = cook.Strip(devices)
-    fmt.Printf("Devices stored: %s\n", len(devices))
+    fmt.Printf("Devices stored after strip: %s\n", len(devices))
 
     stopChan := make(chan struct{})
     var wg sync.WaitGroup
